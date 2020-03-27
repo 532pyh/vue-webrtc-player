@@ -1,0 +1,27 @@
+{
+  "name": "vue-webrtc-player",
+  "version": "0.1.0",
+  "private": false,
+  "main": "lib/webrtc-player.umd.min.js",
+  "keyword": "vue WebRTC video player",
+  "description": "基于WebRTC协议和H5元video开发的播放器",
+  "author": "pengyh",
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "lib": "vue-cli-service build --target lib --name webrtc-player --dest lib packages/index.js"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "babel-plugin-component": "^1.1.1",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
