@@ -21,7 +21,7 @@ export default {
     data() {
         return {
             visible: false,
-            src: 'webrtc://112.5.154.242/live/2',
+            src: 'webrtc://172.16.15.95/live/2',
         }
     },
     methods: {
