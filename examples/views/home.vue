@@ -3,14 +3,18 @@
         <img alt="Vue logo" src="../assets/logo.png" height="50px">
         <div>
             <h4>基于WebRTC协议和H5元video开发的播放器</h4>
-            <vueWebRTCPlayer ref="player" ip="172.16.15.95" port="1985" :src="this.src" :index="1" @volumechange="volumechange"></vueWebRTCPlayer>
-            <input v-model="src" style="width:400px"/>
-            <button @click="handlePlay">播放</button>
+            <vueWebRTCPlayer ref="player" class="player" ip="172.16.15.95" port="1985" :src="this.src" :index="1" @playerHandle="playerHandle"></vueWebRTCPlayer>
+            <input v-model="src" style="width:300px;margin:10px 0"/></br>
+            <button @click="handlePlay" style="margin-right:10px">播放</button>
             <button @click="handlePause">暂停</button>
-            <button @click="changeVolume">音量</button>
         </div>
     </div>
 </template>
+<style lang="less" scoped>
+.player:hover{
+    border: 1px solid #1fc2dc;
+}
+</style>
 <script>
 export default {
     name: "home",
@@ -25,13 +29,10 @@ export default {
             this.$refs.player.handlePlay()
         },
         handlePause(){
-            this.$refs.player.pause()
+            this.$refs.player.handlePause()
         },
-        changeVolume(){
-            this.$refs.player.changeVolume(0)
-        },
-        volumechange(val){
-            // console.log(val)
+        playerHandle(data){
+            console.log(data)
         }
     }
 };

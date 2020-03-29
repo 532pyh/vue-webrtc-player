@@ -1,5 +1,48 @@
-.player-wrap{
-    .player{
+@font-face {
+    font-family: 'iconfont';  /* project id 1721685 */
+    src: url('https://at.alicdn.com/t/font_1721685_hl5an587pbn.eot');
+    src: url('https://at.alicdn.com/t/font_1721685_hl5an587pbn.eot?#iefix') format('embedded-opentype'),
+    url('https://at.alicdn.com/t/font_1721685_hl5an587pbn.woff2') format('woff2'),
+    url('https://at.alicdn.com/t/font_1721685_hl5an587pbn.woff') format('woff'),
+    url('https://at.alicdn.com/t/font_1721685_hl5an587pbn.ttf') format('truetype'),
+    url('https://at.alicdn.com/t/font_1721685_hl5an587pbn.svg#iconfont') format('svg');
+  }
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.player-wrap {
+    position: relative;
+    margin: auto;
+    border: 1px solid #ffffff;
+    .player {
         background: #333333;
+    }
+    .player-controls{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 36px;
+        line-height: 36px;
+        color: #ffffff;
+        .iconfont{
+            width: 30px;
+            cursor: pointer;
+            &:hover{
+                color: #ece9e9;
+            }
+        }
+        .left-btn{
+            float: left;
+        }
+        .right-btn{
+            float: right;
+        }
     }
 }
