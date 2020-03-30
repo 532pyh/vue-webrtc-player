@@ -1,5 +1,5 @@
 <template>
-    <div :id="'plyerWrap'+index" class="player-wrap" :style="{width:width+'px',height:height+'px'}" @mouseenter="controls=true"  @mouseleave="controls=false" @click="listenerPlayerHandle('select')">
+    <div :id="'playerWrap'+index" class="player-wrap" :style="{width:width+'px',height:height+'px'}" @mouseenter="controls=true"  @mouseleave="controls=false" @click="listenerPlayerHandle('select')">
         <video :id="'player'+index" class="player" ref="player" autoplay width="100%" height="100%" :poster="poster">
         </video>
         <div class="player-controls" v-show="controls || playState=='pasue'" :style="{background:controlsBackground}">

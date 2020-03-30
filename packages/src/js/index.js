@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import './adapter-7.4.0.min.js'
 export default {
     name: 'vueWebRTCPlayer',
     props: {
@@ -12,7 +13,7 @@ export default {
         },
         poster: {//播放器封面
             type: String,
-            default: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1585217895993&di=03544b02eba531590aec03edd2bdf883&imgtype=0&src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20190807%2F13%2F1565155717-oeNKzkdHcS.jpg'
+            default: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3193283665,3983976966&fm=26&gp=0.jpg'
         },
         src: {//WebRTC流地址
             type: String,
@@ -30,7 +31,7 @@ export default {
             type: [String, Number],
             default: ''
         },
-        controlsBackground:{
+        controlsBackground:{//控制栏背景
             type:String,
             default:'#1fc2dc',
         }
@@ -58,7 +59,7 @@ export default {
             }
             this.$emit('playerHandle', data)
         },
-        handlePlay() {//开始播放WebRTC流
+        handlePlay(src) {//开始播放WebRTC流
             if (this.link) {
                 this.link.close();//如果WebRTC连接已经存在，先销毁
             }
@@ -88,7 +89,7 @@ export default {
                     const apiUrl = window.location.protocol + '//' + _this.ip + ':' + _this.port + '/rtc/v1/play/';
                     var data = {
                         api: apiUrl,
-                        streamurl: _this.src,
+                        streamurl: src || _this.src,
                         clientip: null,
                         sdp: offer.sdp
                     };
