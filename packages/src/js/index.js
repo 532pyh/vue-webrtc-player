@@ -31,19 +31,20 @@ export default {
             type: [String, Number],
             default: ''
         },
-        controlsBackground:{//控制栏背景
-            type:String,
-            default:'#1fc2dc',
+        controlsBackground: {//控制栏背景
+            type: String,
+            default: '#1fc2dc',
         }
     },
     data() {
         return {
+            url: this.src,//播放地址
             link: null,//WebRTC连接实例
             controls: false,//显示控制栏
             playState: 'pasue',//播放状态 play：播放，pasue：暂停
             volState: 'open',//音量状态 open：开，close：禁音
             screenState: 'normal',//屏幕状态 normal：不全屏，full：全屏
-            printScreen:false,//显示截屏功能
+            printScreen: false,//显示截屏功能
         }
     },
     beforeDestroy() {
@@ -59,7 +60,19 @@ export default {
             }
             this.$emit('playerHandle', data)
         },
-        handlePlay(src) {//开始播放WebRTC流
+        setUrl(src) {
+            this.url = src;
+        },
+        setVol(num) {
+            if (num > 1) {
+                this.$refs.player.volume = 1;
+            } else if (num < 0) {
+                this.$refs.player.volume = 0;
+            } else {
+                this.$refs.player.volume = num;
+            }
+        },
+        handlePlay() {//开始播放WebRTC流
             if (this.link) {
                 this.link.close();//如果WebRTC连接已经存在，先销毁
             }
@@ -89,7 +102,7 @@ export default {
                     const apiUrl = window.location.protocol + '//' + _this.ip + ':' + _this.port + '/rtc/v1/play/';
                     var data = {
                         api: apiUrl,
-                        streamurl: src || _this.src,
+                        streamurl: _this.url,
                         clientip: null,
                         sdp: offer.sdp
                     };
@@ -117,7 +130,7 @@ export default {
             this.link.ontrack = function (event) { //创建WebRTC连接成功后
                 _this.$refs.player.srcObject = event.streams[0];
                 _this.playState = 'play';
-                _this.printScreen=true;
+                _this.printScreen = true;
                 _this.listenerPlayerHandle('play');
             };
         },
@@ -127,7 +140,7 @@ export default {
                 this.link.close();//如果WebRTC连接已经存在，先销毁
                 this.link = null;
                 this.playState = 'pasue';
-                this.printScreen=false;
+                this.printScreen = false;
             }
             this.listenerPlayerHandle('pasue');
         },
@@ -179,7 +192,7 @@ export default {
             const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
             const date = new Date(); //获取一个时间对象
             const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月';
-            const timg = date.getFullYear() + '年' + month + date.getDate() + '日' + date.getHours()+ '时' + date.getMinutes() + '分' + date.getSeconds()+'秒'
+            const timg = date.getFullYear() + '年' + month + date.getDate() + '日' + date.getHours() + '时' + date.getMinutes() + '分' + date.getSeconds() + '秒'
             const filename = timg + '.png';
             // 创建a标签并为其添加属性
             let downloadLink = document.createElement('a');

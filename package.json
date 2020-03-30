@@ -1,6 +1,6 @@
 {
   "name": "vue-webrtc-player",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": false,
   "main": "lib/webrtc-player.umd.min.js",
   "keyword": "vue WebRTC video player",
