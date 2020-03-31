@@ -38,6 +38,7 @@ export default {
     },
     data() {
         return {
+            loading: false,
             url: this.src,//播放地址
             link: null,//WebRTC连接实例
             controls: false,//显示控制栏
@@ -47,12 +48,25 @@ export default {
             printScreen: false,//显示截屏功能
         }
     },
+    watch: {
+        src(val) {
+            this.url = val;
+        }
+    },
+    mounted() {
+        document.getElementById(`player${this.index}`).addEventListener('playing', this.listenerProgress);
+    },
     beforeDestroy() {
         if (this.link) {
             this.link.close();//如果WebRTC连接已经存在，先销毁
         }
+        document.getElementById(`player${this.index}`).removeEventListener('playing', this.listenerProgress);
     },
     methods: {
+        listenerProgress() {
+            console.log(1)
+            this.loading = false;
+        },
         listenerPlayerHandle(type) {//监听播放器操作，并暴露
             const data = {
                 type: type,
@@ -132,6 +146,7 @@ export default {
                 _this.playState = 'play';
                 _this.printScreen = true;
                 _this.listenerPlayerHandle('play');
+                _this.loading = true;
             };
         },
         handlePause() {//销毁WebRTC流

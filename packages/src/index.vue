@@ -2,6 +2,7 @@
     <div :id="'playerWrap'+index" class="player-wrap" :style="{width:width+'px',height:height+'px'}" @mouseenter="controls=true"  @mouseleave="controls=false" @click="listenerPlayerHandle('select')">
         <video :id="'player'+index" class="player" ref="player" autoplay width="100%" height="100%" :poster="poster">
         </video>
+        <div class="player-loading" v-show="loading">加载</div>
         <div class="player-controls" v-show="controls || playState=='pasue'" :style="{background:controlsBackground}">
             <i title="播放" class="iconfont left-btn" v-show="playState=='pasue'" @click="handlePlay">&#xe622;</i>
             <i title="暂停" class="iconfont left-btn" v-show="playState=='play'" @click="handlePause">&#xe6a8;</i>
