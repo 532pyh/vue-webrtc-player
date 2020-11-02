@@ -5,11 +5,11 @@ export default {
     props: {
         width: {//播放器宽度
             type: String,
-            default: '300'
+            default: '300px'
         },
         height: {//播放器高度
             type: String,
-            default: '225'
+            default: '225px'
         },
         poster: {//播放器封面
             type: String,

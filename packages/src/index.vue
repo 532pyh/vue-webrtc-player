@@ -1,5 +1,5 @@
 <template>
-    <div :id="'playerWrap'+index" class="player-wrap" :style="{width:width+'px',height:height+'px'}" @mouseenter="controls=true"  @mouseleave="controls=false" @click="listenerPlayerHandle('select')">
+    <div :id="'playerWrap'+index" class="player-wrap" :style="{width:width,height:height}" @mouseenter="controls=true"  @mouseleave="controls=false" @click="listenerPlayerHandle('select')">
         <video :id="'player'+index" class="player" ref="player" autoplay width="100%" height="100%" :poster="poster">
         </video>
         <div class="player-loading" v-show="loading">加载</div>
